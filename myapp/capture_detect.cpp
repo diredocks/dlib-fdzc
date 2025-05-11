@@ -5,9 +5,9 @@
 #include <dlib/opencv.h>
 #include <filesystem>
 #include <opencv2/opencv.hpp>
-#define SAVE_INTV 30 // 每隔多少帧保存一张人脸图像
-#define INTV 10      // 间隔多少帧做一次人脸识别
-using namespace std; // 使用标准命名空间
+#define SAVE_INTV 600 // 每隔多少帧保存一张人脸图像
+#define INTV 1        // 间隔多少帧做一次人脸识别
+using namespace std;  // 使用标准命名空间
 
 int main() {
   int count = 0;
@@ -41,6 +41,7 @@ int main() {
 
     // 从摄像头捕获一帧图像，运算符>>重载了视频帧捕获功能
     cap >> frame;
+    save_frame_count++;
 
     // 检查捕获的帧是否为空,如果为空则退出循环
     if (frame.empty())
@@ -81,6 +82,7 @@ int main() {
 
         // 保存人脸图像（每隔 SAVE_INTV 帧）
         if (save_frame_count % SAVE_INTV == 0) {
+          save_frame_count = 0;
           // 计算裁剪区域，并裁剪人脸区域
           cv::Rect face_rect(
               std::max((int)face.left(), 0), std::max((int)face.top(), 0),
