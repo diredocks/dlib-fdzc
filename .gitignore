@@ -19,3 +19,5 @@ docs/docs/python/functions.txt
 docs/docs/python/constants.txt
 **/.vscode
 **/venv
+myapp/.cache
+myapp/compile_commands.json
