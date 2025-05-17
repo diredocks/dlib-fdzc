@@ -124,3 +124,7 @@ else()
       message("OpenCV not found, so we won't build the webcam_face_pose_ex example.")
    endif()
 endif()
+
+find_package(nadjieb_mjpeg_streamer REQUIRED)
+add_executable(web_capture web_capture1.cpp)                  
+target_link_libraries(web_capture dlib::dlib ${OpenCV_LIBS} nadjieb_mjpeg_streamer::nadjieb_mjpeg_streamer) 
